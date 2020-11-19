@@ -1,0 +1,16 @@
+@{
+    Layout = "_Layout";
+}
+
+@using Factory.Models
+<p>This engineer is licensed to fix the following machines</p>
+<p>@Html.ActionLink("Add a machine for this engineer","Add")</p>
+@foreach (MachineEngineers me in @Model.Machines)
+{
+  <p>@Html.ActionLink(me.Machine.Name,"Details","Machines", new {id = me.MachineId})</p>
+  @using(Html.BeginForm("Remove","Engineers"))
+  {
+    @Html.Hidden("machineid",me.MachineId)
+    <button type="submit">Remove</button>
+  }
+}

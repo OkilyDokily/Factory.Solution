@@ -1,0 +1,13 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Factory.Models
+@using System.Collections.Generic
+
+@model List<Factory.Models.Machine>
+<p>@Html.ActionLink("Add another Machine","Create")</p>
+@foreach (Machine m in @Model)
+{
+  <p>@Html.ActionLink(m.Name, "Details", new {id = m.MachineId})</p>
+}

@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Factory.Models;
 
-
-namespace ToDoList
+namespace Factory
 {
   public class Startup
   {
@@ -24,7 +23,7 @@ namespace ToDoList
       services.AddMvc();
 
       services.AddEntityFrameworkMySql()
-      .AddDbContext<ToDoListContext>(options => options
+      .AddDbContext<FactoryContext>(options => options
       .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
     }
 

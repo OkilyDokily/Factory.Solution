@@ -1,0 +1,11 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Factory.Models
+<p>Engineers licensed to work on this machine are:</p>
+<p>@Html.ActionLink("Add an engineer to this machine","Add")</p>
+@foreach (MachineEngineers me in @Model.Engineers)
+{
+  <p>@Html.ActionLink(me.Engineer.Name,"Details","Engineers", new {id = me.EngineerId})</p>
+}
