@@ -1,8 +1,11 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Factory.Models
 {
-    public class MachineEngineers
+    public class MachineEngineer
     {
-        public int MachineEngineersId {get;set;}
+        [Key]
+        public int MachineEngineerId {get;set;}
         public int MachineId{get;set;}
         public int EngineerId{get;set;}
         public virtual Machine Machine{get;set;}

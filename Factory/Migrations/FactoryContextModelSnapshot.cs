@@ -40,16 +40,16 @@ namespace Factory.Migrations
                     b.ToTable("Machines");
                 });
 
-            modelBuilder.Entity("Factory.Models.MachineEngineers", b =>
+            modelBuilder.Entity("Factory.Models.MachineEngineer", b =>
                 {
-                    b.Property<int>("MachineEngineersId")
+                    b.Property<int>("MachineEngineerId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("EngineerId");
 
                     b.Property<int>("MachineId");
 
-                    b.HasKey("MachineEngineersId");
+                    b.HasKey("MachineEngineerId");
 
                     b.HasIndex("EngineerId");
 
@@ -58,7 +58,7 @@ namespace Factory.Migrations
                     b.ToTable("MachineEngineers");
                 });
 
-            modelBuilder.Entity("Factory.Models.MachineEngineers", b =>
+            modelBuilder.Entity("Factory.Models.MachineEngineer", b =>
                 {
                     b.HasOne("Factory.Models.Engineer", "Engineer")
                         .WithMany("Machines")

@@ -7,7 +7,7 @@ namespace Factory.Models
   {
     public virtual DbSet<Machine> Machines { get; set; }
     public virtual DbSet<Engineer> Engineers { get; set; }
-    public virtual DbSet<MachineEngineers> MachineEngineers { get; set; }
+    public virtual DbSet<MachineEngineer> MachineEngineers { get; set; }
     public FactoryContext(DbContextOptions builder) : base(builder) { }
   }
 }

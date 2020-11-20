@@ -2,10 +2,13 @@
   Layout = "_Layout";
 }
 
+@model Factory.Models.Machine
+
 @using Factory.Models
+<p>@Html.ActionLink("Add an engineer to this machine","Add",new {id =@Model.MachineId})</p>
 <p>Engineers licensed to work on this machine are:</p>
-<p>@Html.ActionLink("Add an engineer to this machine","Add")</p>
-@foreach (MachineEngineers me in @Model.Engineers)
+
+@foreach (MachineEngineer me in @Model.Engineers)
 {
-  <p>@Html.ActionLink(me.Engineer.Name,"Details","Engineers", new {id = me.EngineerId})</p>
+  <p>@Html.ActionLink(me.Engineer.Name,"Details","Engineers", new {id = me.EngineerId}) : @Html.ActionLink("Remove Engineer from Machine","Remove",new {id = me.MachineEngineerId})</p>
 }

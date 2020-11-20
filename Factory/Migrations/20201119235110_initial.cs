@@ -37,14 +37,14 @@ namespace Factory.Migrations
                 name: "MachineEngineers",
                 columns: table => new
                 {
-                    MachineEngineersId = table.Column<int>(nullable: false)
+                    MachineEngineerId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     MachineId = table.Column<int>(nullable: false),
                     EngineerId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MachineEngineers", x => x.MachineEngineersId);
+                    table.PrimaryKey("PK_MachineEngineers", x => x.MachineEngineerId);
                     table.ForeignKey(
                         name: "FK_MachineEngineers_Engineers_EngineerId",
                         column: x => x.EngineerId,

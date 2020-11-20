@@ -43,7 +43,31 @@ namespace Factory.Controllers
     public ActionResult Add()
     {
       ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "Name");
-      return View()
+      return View();
+    }
+
+    [HttpPost]
+    public ActionResult Add(int id, int engineerid)
+    {
+      _db.MachineEngineers.Add(new MachineEngineer () { MachineId = id, EngineerId = engineerid });
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = id });
+    }
+
+    public ActionResult Remove(int id)
+    {
+      MachineEngineer me = _db.MachineEngineers.Include(x => x.Machine).Include(x => x.Engineer).FirstOrDefault(x => x.MachineEngineerId == id);
+      return View(me);
+    }
+
+    [HttpPost, ActionName("Remove")]
+    public ActionResult RemoveEngineer(int id)
+    {
+      MachineEngineer me = _db.MachineEngineers.FirstOrDefault(x => x.MachineEngineerId == id);
+      int engineerid = me.EngineerId;
+      _db.MachineEngineers.Remove(me);
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = engineerid });
     }
   }
 }

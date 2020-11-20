@@ -49,7 +49,25 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult Add(int id, int machineid)
     {
-        _db.MachineEngineers.Add
+      _db.MachineEngineers.Add(new MachineEngineer() { EngineerId = id, MachineId = machineid });
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = id });
+    }
+
+    public ActionResult Remove(int id)
+    {
+      MachineEngineer me = _db.MachineEngineers.Include(x => x.Machine).Include(x => x.Engineer).FirstOrDefault(x => x.MachineEngineerId == id);
+      return View(me);
+    }
+
+    [HttpPost, ActionName("Remove")]
+    public ActionResult RemoveMachine(int id)
+    {
+      MachineEngineer me = _db.MachineEngineers.FirstOrDefault(x => x.MachineEngineerId == id);
+      int machineid = me.MachineId;
+      _db.MachineEngineers.Remove(me);
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = machineid });
     }
   }
 }
