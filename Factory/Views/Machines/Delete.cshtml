@@ -4,13 +4,9 @@
 
 @model Factory.Models.Machine
 
-@{
-  Layout = "_Layout";
-}
-
+<p>Are you sure you want to delete this machine? : @Model.Name</p>
 @using (Html.BeginForm())
 {
-  @Html.LabelFor(x => x.Name)
-  @Html.EditorFor(x => x.Name)
+  @Html.HiddenFor(x => x.MachineId)
   <input type="submit" value="Go!">
 }

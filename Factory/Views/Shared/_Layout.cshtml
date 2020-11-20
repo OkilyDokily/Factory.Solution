@@ -4,12 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" href="~/bootstrap.css">
+  <link rel="stylesheet" href="~/styles.css">
+  <title>Dr. Sillystringz's Factory</title>
 </head>
 
 <body>
-  @RenderBody()
-  @Html.ActionLink("Home","Index","Home")
+  <div class="container">
+    <div class="jumbotron">Dr. Sillystringz's Factory</div>
+    @RenderBody()
+    <h4>@Html.ActionLink("Go Home","Index","Home")</h4>
+  </div>
 </body>
 
 </html>

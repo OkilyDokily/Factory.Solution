@@ -1,0 +1,12 @@
+@{
+    Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer
+@using(Html.BeginForm())
+{
+  @Html.HiddenFor(x => x.EngineerId)
+  @Html.LabelFor(x => x.Name)
+  @Html.EditorFor(x=>x.Name)
+  <input type="submit" value="Go!">
+}

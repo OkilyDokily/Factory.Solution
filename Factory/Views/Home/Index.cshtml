@@ -1,2 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Factory.Models
+@model (List<Factory.Models.Engineer>,List<Factory.Models.Machine>)
+
 <p>@Html.ActionLink("Engineers","Index","Engineers")</p>
 <p>@Html.ActionLink("Machines","Index","Machines")</p>
+
+<p>A list of all engineers grouped with the machines they are working on.</p>
+@foreach (Engineer engineer in @Model.Item1)
+{
+  <p>@Html.ActionLink(engineer.Name,"Details","Engineers", new {id = engineer.EngineerId})</p>
+  <ul>
+    @foreach (MachineEngineer machine in engineer.Machines)
+    {
+      <li>@Html.ActionLink(machine.Machine.Name,"Details", "Machines", new {id = machine.MachineId})</li>
+    }
+  </ul>
+}
+<br>
+<p>A list of all machines grouped with the engineers that are working on them.</p>
+@foreach (Machine machine in @Model.Item2)
+{
+  <p>@Html.ActionLink(machine.Name,"Details","Machines", new {id = machine.MachineId})</p>
+  <ul>
+    @foreach (MachineEngineer engineer in machine.Engineers)
+    {
+      <li>@Html.ActionLink(engineer.Engineer.Name,"Details","Engineers", new {id = engineer.EngineerId})</li>
+    }
+  </ul>
+}

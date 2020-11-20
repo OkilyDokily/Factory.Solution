@@ -5,7 +5,9 @@
 @model Factory.Models.Engineer
 
 @using Factory.Models
+<p>@Html.ActionLink("Edit this engineer","Edit",new {id = @Model.EngineerId})</p>
 <p>@Html.ActionLink("Add a machine for this engineer","Add",new {id = @Model.EngineerId})</p>
+<p>@Html.ActionLink("Delete this engineer","Delete",new {id = @Model.EngineerId})</p>
 <p>This engineer is licensed to fix the following machines</p>
 
 @foreach (MachineEngineer me in @Model.Machines)

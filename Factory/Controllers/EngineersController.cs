@@ -42,7 +42,10 @@ namespace Factory.Controllers
 
     public ActionResult Add(int id)
     {
-      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
+      Engineer engineer = _db.Engineers.Include(e => e.Machines).ThenInclude(me => me.Machine).FirstOrDefault();
+      List<MachineEngineer> machines = engineer.Machines.ToList();
+      List<Machine> filtered = _db.Machines.Where(m => !(machines.Any(x => m.MachineId == x.MachineId))).ToList();
+      ViewBag.MachineId = new SelectList(filtered, "MachineId", "Name");
       return View();
     }
 
@@ -68,6 +71,35 @@ namespace Factory.Controllers
       _db.MachineEngineers.Remove(me);
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = machineid });
+    }
+
+    public ActionResult Edit(int id)
+    {
+      Engineer engineer = _db.Engineers.FirstOrDefault(e => e.EngineerId == id);
+      return View(engineer);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Engineer engineer)
+    {
+      _db.Entry(engineer).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = engineer.EngineerId });
+    }
+
+    public ActionResult Delete(int id)
+    {
+      Engineer engineer = _db.Engineers.FirstOrDefault(m => m.EngineerId == id);
+      return View(engineer);
+    }
+
+
+    [HttpPost]
+    public ActionResult Delete(Engineer engineer)
+    {
+      _db.Engineers.Remove(engineer);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }
