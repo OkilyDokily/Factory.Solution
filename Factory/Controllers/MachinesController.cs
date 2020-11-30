@@ -45,8 +45,9 @@ namespace Factory.Controllers
       Machine machine = _db.Machines.Include(m => m.Engineers).ThenInclude(me => me.Engineer).FirstOrDefault();
       List<MachineEngineer> engineers = machine.Engineers.ToList();
       List<Engineer> filtered = _db.Engineers.Where(m => !(engineers.Any(x => m.EngineerId == x.EngineerId))).ToList();
+      bool isNotEmpty = filtered.Count > 0;
       ViewBag.EngineerId = new SelectList(filtered, "EngineerId", "Name");
-      return View();
+      return View(isNotEmpty);
     }
 
     [HttpPost]

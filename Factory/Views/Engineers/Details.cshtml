@@ -5,6 +5,7 @@
 @model Factory.Models.Engineer
 
 @using Factory.Models
+<p>Name of Engineer: @Model.Name</p>
 <p>@Html.ActionLink("Edit this engineer","Edit",new {id = @Model.EngineerId})</p>
 <p>@Html.ActionLink("Add a machine for this engineer","Add",new {id = @Model.EngineerId})</p>
 <p>@Html.ActionLink("Delete this engineer","Delete",new {id = @Model.EngineerId})</p>

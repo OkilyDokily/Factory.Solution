@@ -1,9 +1,15 @@
 @{
     Layout = "_Layout";
 }
-
+@if(@Model)
+{
 @using (Html.BeginForm())
 {
   @Html.DropDownList("EngineerId")
   <input type="submit" value="Go!">
+}
+}
+else
+{
+  <p>There are no engineers to add to this machine.</p>
 }

@@ -45,8 +45,9 @@ namespace Factory.Controllers
       Engineer engineer = _db.Engineers.Include(e => e.Machines).ThenInclude(me => me.Machine).FirstOrDefault();
       List<MachineEngineer> machines = engineer.Machines.ToList();
       List<Machine> filtered = _db.Machines.Where(m => !(machines.Any(x => m.MachineId == x.MachineId))).ToList();
+      bool isNotEmpty = filtered.Count > 0;
       ViewBag.MachineId = new SelectList(filtered, "MachineId", "Name");
-      return View();
+      return View(isNotEmpty);
     }
 
     [HttpPost]
@@ -67,10 +68,10 @@ namespace Factory.Controllers
     public ActionResult RemoveMachine(int id)
     {
       MachineEngineer me = _db.MachineEngineers.FirstOrDefault(x => x.MachineEngineerId == id);
-      int machineid = me.MachineId;
+      int engineerid = me.EngineerId;
       _db.MachineEngineers.Remove(me);
       _db.SaveChanges();
-      return RedirectToAction("Details", new { id = machineid });
+      return RedirectToAction("Details", new { id = engineerid });
     }
 
     public ActionResult Edit(int id)
