@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Factory.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
+using System;
 
 namespace Factory.Controllers
 {
@@ -42,9 +43,11 @@ namespace Factory.Controllers
 
     public ActionResult Add(int id)
     {
-      Engineer engineer = _db.Engineers.Include(e => e.Machines).ThenInclude(me => me.Machine).FirstOrDefault();
+      //I needed to add a lambda to first or default to fix my bug.
+      Engineer engineer = _db.Engineers.Include(e => e.Machines).ThenInclude(me => me.Machine).FirstOrDefault(x => x.EngineerId == id);
       List<MachineEngineer> machines = engineer.Machines.ToList();
       List<Machine> filtered = _db.Machines.Where(m => !(machines.Any(x => m.MachineId == x.MachineId))).ToList();
+
       bool isNotEmpty = filtered.Count > 0;
       ViewBag.MachineId = new SelectList(filtered, "MachineId", "Name");
       return View(isNotEmpty);

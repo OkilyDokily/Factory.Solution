@@ -40,9 +40,10 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult Add()
+    public ActionResult Add(int id)
     {
-      Machine machine = _db.Machines.Include(m => m.Engineers).ThenInclude(me => me.Engineer).FirstOrDefault();
+      //i need to add a lambda (and a paramter to the actionresult method) to first or default to fix the bug
+      Machine machine = _db.Machines.Include(m => m.Engineers).ThenInclude(me => me.Engineer).FirstOrDefault(x => x.MachineId == id);
       List<MachineEngineer> engineers = machine.Engineers.ToList();
       List<Engineer> filtered = _db.Engineers.Where(m => !(engineers.Any(x => m.EngineerId == x.EngineerId))).ToList();
       bool isNotEmpty = filtered.Count > 0;
