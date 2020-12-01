@@ -6,8 +6,10 @@
 @model (List<Factory.Models.Engineer>,List<Factory.Models.Machine>)
 
 <p>View index pages for machines or engineers</p>
-<p>@Html.ActionLink("Engineers","Index","Engineers")</p>
-<p>@Html.ActionLink("Machines","Index","Machines")</p>
+<div class="shift">
+  <p>@Html.ActionLink("Engineers","Index","Engineers")</p>
+  <p>@Html.ActionLink("Machines","Index","Machines")</p>
+</div>
 
 <p>A list of all engineers grouped with the machines they are working on.</p>
 @foreach (Engineer engineer in @Model.Item1)

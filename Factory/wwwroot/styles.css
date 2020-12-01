@@ -3,3 +3,16 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+
+.red{
+  color:red;
+}
+
+.red:hover{
+  color:red;
+}
+
+div.shift{
+  padding-left: 20px;
+}

@@ -5,13 +5,19 @@
 @model Factory.Models.Machine
 
 @using Factory.Models
-<p>The name of this machine is: @Model.Name</p>
-<p>@Html.ActionLink("Edit this machine","Edit",new {id = @Model.MachineId})</p>
-<p>@Html.ActionLink("Add an engineer to this machine","Add",new {id =@Model.MachineId})</p>
-<p>@Html.ActionLink("Delete this machine","Delete",new {id = @Model.MachineId})</p>
-<p>Engineers licensed to work on this machine are:</p>
+<h3>The name of this machine is: @Model.Name</h3>
+<div class="shift">
+  <p>@Html.ActionLink("Edit this machine","Edit",new {id = @Model.MachineId})</p>
+  <p>@Html.ActionLink("Add an engineer to this machine","Add",new {id =@Model.MachineId})</p>
+  <p>@Html.ActionLink("Delete this machine","Delete",new {id = @Model.MachineId})</p>
+</div>
 
-@foreach (MachineEngineer me in @Model.Engineers)
-{
-  <p>@Html.ActionLink(me.Engineer.Name,"Details","Engineers", new {id = me.EngineerId}) : @Html.ActionLink("Remove Engineer from Machine","Remove",new {id = me.MachineEngineerId})</p>
-}
+<h3>Engineers licensed to work on this machine are:</h3>
+
+<ul>
+ 
+  @foreach (MachineEngineer me in @Model.Engineers)
+  {
+      <li><p>@Html.ActionLink(me.Engineer.Name,"Details","Engineers", new {id = me.EngineerId}) :  @Html.ActionLink("Remove Engineer from Machine","Remove",new {id = me.MachineEngineerId},new {@class = "red"})</p></li>
+  }
+</ul>
