@@ -4,11 +4,11 @@
 
 @if(@Model)
 {
-@using (Html.BeginForm())
-{
-  @Html.DropDownList("MachineId")
-  <input type="submit" value="Go!">
-}
+  @using (Html.BeginForm())
+  {
+    @Html.DropDownList("MachineId")
+    <input type="submit" value="Go!">
+  }
 }
 else
 {

@@ -3,11 +3,11 @@
 }
 @if(@Model)
 {
-@using (Html.BeginForm())
-{
-  @Html.DropDownList("EngineerId")
-  <input type="submit" value="Go!">
-}
+  @using (Html.BeginForm())
+  {
+    @Html.DropDownList("EngineerId")
+    <input type="submit" value="Go!">
+  }
 }
 else
 {
