@@ -21,7 +21,7 @@ _A Factory app with many to many relationships_
 * enter `dotnet restore`
 * enter `dotnet ef database update`
 * enter `dotnet run` to open the program
-* Follow the instructions within the app
+
 ## Specs
 
 
