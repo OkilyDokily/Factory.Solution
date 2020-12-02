@@ -17,9 +17,9 @@ _A Factory app with many to many relationships_
 * Clone/download the repo
 * Navigate to the Factory folder 
 * Open your terminal in the Factory Folder
-* Enter the following commands
+* Enter the following commands into the terminal
 * enter `dotnet restore`
-* enter `ef database update`
+* enter `dotnet ef database update`
 * enter `dotnet run` to open the program
 * Follow the instructions within the app
 ## Specs
