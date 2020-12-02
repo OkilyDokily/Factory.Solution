@@ -69,10 +69,10 @@ namespace Factory.Controllers
     public ActionResult RemoveEngineer(int id)
     {
       MachineEngineer me = _db.MachineEngineers.FirstOrDefault(x => x.MachineEngineerId == id);
-      int engineerid = me.EngineerId;
+      int machineid = me.MachineId;
       _db.MachineEngineers.Remove(me);
       _db.SaveChanges();
-      return RedirectToAction("Details", new { id = engineerid });
+      return RedirectToAction("Details", new { id = machineid });
     }
 
     public ActionResult Edit(int id)
